@@ -1,6 +1,6 @@
 # ytdlp-asr-funasr
 
-一个可直接放进 OpenClaw / Codex 工作区使用的 Skill：
+一个兼容 [vercel-labs/skills](https://github.com/vercel-labs/skills) 安装方式的 Agent Skill：
 
 - 用 `yt-dlp` 下载 YouTube / Bilibili / 其他受支持站点的音频
 - 用 FunASR (SenseVoiceSmall) 转文字
@@ -8,25 +8,43 @@
 
 ## 安装
 
-### 方式 1：直接克隆
+### 方式 1：像 Vercel Skills 那样安装（推荐）
+
+安装到 OpenClaw：
+
+```bash
+npx skills add Enter-tainer/ytdlp-asr-funasr -a openclaw
+```
+
+安装到 Codex：
+
+```bash
+npx skills add Enter-tainer/ytdlp-asr-funasr -a codex
+```
+
+安装到所有检测到的 agent：
+
+```bash
+npx skills add Enter-tainer/ytdlp-asr-funasr
+```
+
+列出仓库里的 skill：
+
+```bash
+npx skills add Enter-tainer/ytdlp-asr-funasr --list
+```
+
+### 方式 2：直接克隆
 
 ```bash
 git clone https://github.com/Enter-tainer/ytdlp-asr-funasr.git
 mkdir -p ~/.openclaw/workspace/skills
-cp -R ytdlp-asr-funasr/skill ~/.openclaw/workspace/skills/ytdlp-asr-funasr
+cp -R ytdlp-asr-funasr/skills/ytdlp-asr-funasr ~/.openclaw/workspace/skills/ytdlp-asr-funasr
 cd ~/.openclaw/workspace/skills/ytdlp-asr-funasr
 uv sync
 ```
 
-### 方式 2：用 GitHub 一行安装
-
-```bash
-mkdir -p ~/.openclaw/workspace/skills/ytdlp-asr-funasr
-curl -L https://github.com/Enter-tainer/ytdlp-asr-funasr/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=2 -C ~/.openclaw/workspace/skills/ytdlp-asr-funasr ytdlp-asr-funasr-main/skill
-cd ~/.openclaw/workspace/skills/ytdlp-asr-funasr
-uv sync
-```
+安装完成后，在目标 skill 目录里执行一次 `uv sync`，让 FunASR 依赖就位。
 
 ## 系统依赖
 
@@ -65,7 +83,7 @@ output/
 
 ## OpenClaw 触发说明
 
-把 `skill/SKILL.md` 和 `skill/scripts/*` 放到工作区的：
+把 `skills/ytdlp-asr-funasr/` 放到工作区的：
 
 ```text
 <workspace>/skills/ytdlp-asr-funasr/
