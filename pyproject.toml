@@ -1,0 +1,15 @@
+[project]
+name = "ytdlp-asr-funasr-skill"
+version = "0.1.0"
+description = "yt-dlp + FunASR transcription helper scripts for OpenClaw skills"
+requires-python = ">=3.10"
+dependencies = [
+  "funasr",
+  "modelscope",
+  "torch",
+  "torchaudio",
+  "soundfile",
+]
+
+[tool.uv]
+package = false
